@@ -148,9 +148,6 @@ class install_packages {
       ensure => present
     }
 
-    package { 'vim':
-      ensure => present
-    }
 }
 
 # Includes
