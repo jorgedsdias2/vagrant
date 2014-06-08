@@ -13,6 +13,38 @@ class base {
     }
 }
 
+# Java
+
+class install_java {
+  include apt
+
+  package { "openjdk-6-jre":
+    ensure => present,
+  }
+
+  package { "openjdk-7-jre":
+    ensure => present,
+  }
+
+  package { "openjdk-6-jdk":
+    ensure => present,
+  }
+
+  package { "openjdk-7-jdk":
+    ensure => present,
+  }
+  
+  apt::ppa { "ppa:webupd8team/java": }
+  # Update apt-get
+  exec { 'apt-get update':
+    command => '/usr/bin/apt-get update'
+  }
+
+  package { "oracle-java7-installer":
+    ensure => present,
+  }
+}
+
 # Apache
 
 class install_apache {
@@ -148,6 +180,9 @@ class install_packages {
       ensure => present
     }
 
+    package { 'vim':
+      ensure => present
+    }
 }
 
 # Includes
