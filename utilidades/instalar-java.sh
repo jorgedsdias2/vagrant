@@ -10,4 +10,3 @@ sudo apt-get install oracle-java7-installer
 # versao instalada
 java -version
 javac -version
-
