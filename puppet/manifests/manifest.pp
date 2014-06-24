@@ -153,6 +153,19 @@ class install_packages {
     }
 }
 
+# RVM
+
+class install_rvm {
+    include stdlib
+    include rvm
+    if $rvm_installed == "true" {
+      rvm_system_ruby {
+       'ruby-1.9.3-p125':
+       ensure => 'present';
+      }
+    }
+}
+
 # Includes
 
 include base
@@ -161,57 +174,4 @@ include install_php
 include install_mysql
 include install_phpmyadmin
 include install_packages
-#include install_rvm
-
-# RVM
-
-#class install_rvm {
-#
-#  package { "rvm":
-#    ensure => present,
-#  }
-#
-#  service { "rvm":
-#    ensure => running,
-#    require => Package["rvm"],
-#  }
-#}
-
-# RVM
-
-#class install_rvm {
-#
-#    class { 'rvm':
-#        version => '1.20.12'
-#    }
-#
-#}
-
-# RVM
-
-#class install_rvm {
-#
-#    exec { 'install_rvm':
-#      command => "${as_vagrant} 'curl -L https://get.rvm.io | bash -s stable'",
-#      creates => "${home}/.rvm/bin/rvm",
-#      require => Package['curl']
-#    }
-#
-#}
-
-# Ruby
-
-#class install_ruby' {
-#
-#    exec { 'install_ruby':
-#      command => "/.rvm/bin/rvm install ruby-2.0.0",
-#      creates => "/.rvm/bin/ruby",
-#      require => Exec['install_rvm']
-#    }
-#
-#    exec { "gem install bundler --no-rdoc --no-ri":
-#      creates => "/.rvm/bin/bundle",
-#      require => Exec['install_ruby']
-#    }
-#
-#}
+include install_rvm
