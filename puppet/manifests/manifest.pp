@@ -4,10 +4,10 @@
 
 class base {
 
-    # Update apt-get
-    exec { 'apt-get update':
-        command => '/usr/bin/apt-get update'
-    }
+  # Update apt-get
+  exec { 'apt-get update':
+    command => '/usr/bin/apt-get update'
+  }
 }
 
 # Apache
@@ -101,66 +101,68 @@ class install_mysql {
 # phpmyadmin
 
 class install_phpmyadmin {
-    package {
-        "phpmyadmin":
-            ensure => present,
-            require => [
-                Exec['apt-get update'],
-                Package["php5", "php5-mysql", "apache2"],
-            ]
-    }
+  package {
+    "phpmyadmin":
+      ensure => present,
+      require => [
+        Exec['apt-get update'],
+        Package["php5", "php5-mysql", "apache2"],
+      ]
+  }
 
-    file {
-        "/etc/apache2/conf.d/phpmyadmin.conf":
-            ensure => link,
-            target => "/etc/phpmyadmin/apache.conf",
-            require => Package['apache2'],
-            notify => Service["apache2"]
-    }
+  file {
+    "/etc/apache2/conf.d/phpmyadmin.conf":
+      ensure => link,
+      target => "/etc/phpmyadmin/apache.conf",
+      require => Package['apache2'],
+      notify => Service["apache2"]
+  }
 }
 
 # Packages
 
 class install_packages {
 
-    package { 'curl':
-        ensure => present
-    }
+  package { 'curl':
+    ensure => present
+  }
 
-    package { 'build-essential':
-      ensure => present
-    }
+  package { 'build-essential':
+    ensure => present
+  }
 
-    package { 'git-core':
-      ensure => present
-    }
+  package { 'git-core':
+    ensure => present
+  }
 
-    # Nokogiri dependencies.
-    package { ['libxml2', 'libxml2-dev', 'libxslt1-dev']:
-      ensure => present
-    }
+  # Nokogiri dependencies.
+  package { ['libxml2', 'libxml2-dev', 'libxslt1-dev']:
+    ensure => present
+  }
 
-    # ExecJS runtime.
-    package { 'nodejs':
-      ensure => present
-    }
+  # ExecJS runtime.
+  package { 'nodejs':
+    ensure => present
+  }
 
-    package { 'vim':
-      ensure => present
-    }
+  package { 'vim':
+    ensure => present
+  }
 }
 
 # RVM
 
 class install_rvm {
-    include stdlib
-    include rvm
-    if $rvm_installed == "true" {
-      rvm_system_ruby {
-       'ruby-1.9.3-p125':
-       ensure => 'present';
-      }
+  include stdlib
+  include rvm
+  if $rvm_installed == "true" {
+    rvm_system_ruby {
+      'ruby-1.9.3-p125':
+        ensure => 'present';
+      'ruby-2.0.0-p451':
+        ensure => 'present';
     }
+  }
 }
 
 # Includes
