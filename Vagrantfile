@@ -19,4 +19,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.manifest_file = 'manifest.pp'
     puppet.options = "--verbose"
   end
+  #teste
 end
