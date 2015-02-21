@@ -11,13 +11,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  config.vm.provision :shell, :path => "utilidades/install-rvm.sh",  :args => "stable"
-  #config.vm.provision :shell, :path => "utilidades/upgrade-puppet.sh"
-
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = 'puppet/manifests'
-    puppet.module_path    = 'puppet/modules'
+    puppet.module_path = 'puppet/modules'
     puppet.manifest_file = 'manifest.pp'
     puppet.options = "--verbose"
   end
 end
+
+#config.vm.provision :shell, :path => "utilidades/upgrade-puppet.sh" 
+#config.vm.provision :shell, :path => "utilidades/install-rvm.sh",  :args => "stable"
+#config.vm.provision :shell, :path => "utilidades/install-ruby.sh", :args => "1.9.3"
+#config.vm.provision :shell, :path => "utilidades/install-ruby.sh", :args => "2.0.0 rails haml"

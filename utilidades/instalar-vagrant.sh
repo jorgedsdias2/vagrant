@@ -19,3 +19,6 @@ vagrant up --provision
 
 # acessar VM
 vagrant ssh
+
+#OBS IMPORTANTE
+# 1 - NAO EXECUTAR postinstall.sh
