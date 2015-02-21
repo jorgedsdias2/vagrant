@@ -11,6 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+  config.vm.provision :shell, :path => "utilidades/install-rvm.sh",  :args => "stable"
   #config.vm.provision :shell, :path => "utilidades/upgrade-puppet.sh"
 
   config.vm.provision :puppet do |puppet|

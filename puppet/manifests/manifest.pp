@@ -173,4 +173,4 @@ include install_php
 include install_mysql
 include install_phpmyadmin
 include install_packages
-include install_rvm
+#include install_rvm
