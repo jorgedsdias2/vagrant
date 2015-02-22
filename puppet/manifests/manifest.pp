@@ -96,6 +96,10 @@ class install_mysql {
     ensure => running,
     require => Package["mysql-server"],
   }
+
+  package { "libmysqlclient-dev":
+    ensure => present,
+  }
 }
 
 # phpmyadmin

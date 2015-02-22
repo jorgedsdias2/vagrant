@@ -11,6 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+  config.vm.synced_folder "c:/wamp/www/php", "/home/vagrant/php"  
+  config.vm.synced_folder "c:/wamp/www/rails", "/home/vagrant/rails"
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = 'puppet/manifests'
     puppet.module_path = 'puppet/modules'

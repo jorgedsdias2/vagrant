@@ -10,6 +10,9 @@ vagrant ssh
 # atualizar guest
 sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
 
+# resolver problema ao montar folder na VM
+sudo /etc/init.d/vboxadd setup
+
 # sair da VM
 exit
 

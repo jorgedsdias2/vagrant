@@ -31,4 +31,10 @@ gem update rake
 gem --version
 gem update --system
 
+gem install rails
+
+rails new 'projeto'
+
+rails s -b 0.0.0.0
+
 #curl -sSL https://get.rvm.io | bash -s $1
