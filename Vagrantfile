@@ -1,3 +1,6 @@
+# Alterando porta ssh padrao 2222
+# config.vm.network :forwarded_port, guest: 22, host: {porta}, id: "ssh", auto_correct: true
+
 # Iniciar arquivo sh
 # config.vm.provision :shell, :path => "{arquivo.sh}"
 
