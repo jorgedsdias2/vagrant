@@ -1,3 +1,14 @@
+# Iniciar arquivo sh
+# config.vm.provision :shell, :path => "{arquivo.sh}"
+
+# Iniciar arquivo sh com parametros
+# config.vm.provision :shell, :path => "{arquivo.sh}",  :args => "{parametros}
+# os parametros sao passados no arquivo sh como no exemplo:
+# $1 - parametro 1 / $2 - parametro 2
+
+# Compartilhar pasta local com VM
+# config.vm.synced_folder "{pasta local}", "{pasta remota}"
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -5,14 +16,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "vagrant.localhost.com"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.network "private_network", ip: "10.0.0.7"
-  config.vm.network :forwarded_port, guest: 3000, host: 3000
-  config.vm.network :forwarded_port, guest: 8080, host: 8080
   config.vm.network :forwarded_port, guest: 80, host: 8090
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  config.vm.synced_folder "c:/wamp/www/php", "/home/vagrant/php"  
-  config.vm.synced_folder "c:/wamp/www/rails", "/home/vagrant/rails"
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = 'puppet/manifests'
     puppet.module_path = 'puppet/modules'
@@ -20,8 +27,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.options = "--verbose"
   end
 end
-
-#config.vm.provision :shell, :path => "utilidades/upgrade-puppet.sh" 
-#config.vm.provision :shell, :path => "utilidades/install-rvm.sh",  :args => "stable"
-#config.vm.provision :shell, :path => "utilidades/install-ruby.sh", :args => "1.9.3"
-#config.vm.provision :shell, :path => "utilidades/install-ruby.sh", :args => "2.0.0 rails haml"
