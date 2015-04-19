@@ -8,3 +8,6 @@ ALTER DATABASE name OWNER TO new_owner;
 
 # alterando senha do usuario
 alter user postgres with encrypted password 'senha';
+
+# se tiver problemas com a gem pg instalar isso
+sudo apt-get install libpq-dev
