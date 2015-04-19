@@ -1,1 +1,1 @@
-shutdown now
+shutdown -P now
