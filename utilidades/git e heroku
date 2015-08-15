@@ -1,0 +1,28 @@
+rake assets:precompile
+bundle show
+bundle update
+bundle open {gem}
+rails db
+rake routes
+rails g controller {tabela} {campos}:{tipo}
+rails destroy controller {tabela}
+git ls-files
+
+rails g migration Add{Coluna}To{Tabela} {Coluna}:{tipo}
+rails g migration Remove{Coluna}From{Tabela} {Coluna}:{tipo}
+rails g migration AddIndexTo{Tabela} {Coluna}:{tipo}:index
+
+cat /etc/udev/rules.d/70-persistent-net.rules
+
+find -name *.erb | xargs grep -li paginas
+find -name *.erb -print0 | xargs -0 grep -li "usuários"
+
+heroku logs --tail
+heroku restart -a app
+heroku run bundle install
+heroku run bundle show
+heroku run rake db:migrate
+heroku stack
+heroku pg:psql
+
+#rails remove Add{Coluna}To{Tabela}
